@@ -24,12 +24,24 @@ class SoldiersController < ApplicationController
   # POST /soldiers
   # POST /soldiers.json
   def create
+    tags = params.except(*%w[utf8 authenticity_token soldier commit controller action])
+
+    p tags
+    p '='*100
     @soldier = Soldier.new(soldier_params)
+
 
     respond_to do |format|
       if @soldier.save
         format.html { redirect_to @soldier, notice: 'Soldier was successfully created.' }
         format.json { render :show, status: :created, location: @soldier }
+
+        tags.each_pair do |key, value|
+
+          p '=tttt'*100
+          Stag.create key: key, value: value, soldier_id: @soldier.id
+        end
+
       else
         format.html { render :new }
         format.json { render json: @soldier.errors, status: :unprocessable_entity }

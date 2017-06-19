@@ -10,5 +10,11 @@
   <%= @soldier.idd %>
 </p>
 
+tags:
+<% @soldier.stags.each do |tag| %>
+<%= tag.key %>
+    <%= tag.value %>
+
+    <% end %>
 <%= link_to 'Edit', edit_soldier_path(@soldier) %> |
 <%= link_to 'Back', soldiers_path %>
