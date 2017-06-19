@@ -21,17 +21,79 @@
     <%= f.text_area :idd %>
   </div>
 
-    <button type="button" onclick="addUniversity()">Add university</button>
-  <script>
-    function addUniversity() {
-        var uns = $('#universities');
-        uns.html(uns.html() + '<div><h3>New university</h3><input name="rrr" placeholder="Name"  /><input placeholder="Profession"  /></div>')
-    }
-  </script>
+    <button type="button"  onclick="addUniversity()">Add university</button>
+    <button type="button"  onclick="addSchool()">Add profession</button>
+    <button type="button"  onclick="addProfession()">Add profession</button>
+    <button type="button"  onclick="addCourse()">Add courses</button>
+    <button type="button"  onclick="addService()">Add army service</button>
+    <script>
+      var universitiesCount = 0;
+      function addUniversity(){
+        var container = $('#universities');
+        var counter = universitiesCount;
+        var tagname = 'university';
+        var title = 'university';
+        addTag(container, counter, tagname, title);
+        universitiesCount ++;
+      }
+      var schoolsCount = 0;
+      function addSchool(){
+        var container = $('#schools');
+        var counter = schoolsCount;
+        var tagname = 'school';
+        var title = 'school';
+        addTag(container, counter, tagname, title);
+        schoolsCount ++;   
+      }
 
-    <div id="universities">
+      var professionCount = 0;
+      function addProfession() {
+        var container = $('#professions');
+        var counter = professionsCount;
+        var tagname = 'profession';
+        var title = 'profession';
+        addTag(container, counter, tagname, title);
+        professionsCount ++;
+      }
 
+
+      var courseCount = 0;
+      function addCourse() {
+        var container = $('#courses');
+        var counter = coursesCount;
+        var tagname = 'course';
+        var title = 'course';
+        addTag(container, counter, tagname, title);
+        coursesCount ++;
+      }
+
+      var servicesCount = 0;
+      function addServices() {
+        var container = $('#services');
+        var counter = servicesCount;
+        var tagname = 'service';
+        var title = 'army service';
+        addTag(container, counter, tagname, title);
+        servicesCount ++;
+      }
+
+      function addTag(container, counter, tagname, title) {
+          container.html(container.html() + 
+            "<div>" +
+              "<h3>New " + title +"</h3>" + 
+              "<input name='tag_" + tagname +"_name_" + counter + "' placeholder='Name'/>" + 
+              "<input name='tag_" + tagname +"university_profession_" + counter + "' placeholder='Profession'/>" + 
+              "<input name='tag_" + tagname +"_grade_" + counter + "' placeholder='Grade'/>" + 
+            "</div>");
+      }
+    </script>
+    <div id="schools">
     </div>
+    <div id="universities">
+    </div>
+    <div id="courses"></div>
+    <div id="professions"></div>
+    <div id="services"></div>
   <div class="actions">
     <%= f.submit %>
   </div>
