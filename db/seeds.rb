@@ -1,3 +1,21 @@
+[
+[306756698,"David Mizrachi"],
+[308557339,"Shmuel Mizrachi"],
+[316758322,"Moshe Agever"],
+[343582351,"Naomi Michael"],
+[665873945,"Sara Malka"],
+[687668673,"Dana Levi"],
+[767676898,"Yoav Moshe"],
+[854732562,"David Levi"]
+].each do |idd, n|
+  Soldier.create idd: idd, name:n
+end
+
+
+
+
+
+
 '"1;306756698;""Talents"";""C#"""
 "2;306756698;""Talents"";"".Net"""
 "3;306756698;""Unit"";""8200"""
@@ -60,7 +78,66 @@
 "60;854732562;""University_Skope_1"";""BSC-Information-Systems"""
 "61;854732562;""University_Name_2"";""Ben-Gurion"""
 "62;854732562;""University_Grades_2"";""80+"""
-"63;854732562;""University_Grades_2"";""Mce-Computer-Science"""'.split("\n").each do |line|
-
+"63;854732562;""University_Grades_2"";""Mce-Computer-Science"""'.gsub('"','').split("\n").each do |line|
+  parms = line.split(';')
+Stag.create soldier_id: Soldier.where(idd: parms[1]).first.id, key: parms[2], value: parms[3]
 end
 
+
+
+
+[
+'C# Developer',
+'C++ Developer',
+'Java Developer',
+'Pyton Developer',
+'DBA Oracle',
+'Baker',
+'Rasar Worker',
+'HTML Developer',
+'Web Developer',
+'8HACK'
+].each do |j|
+  Job.create name: j
+end
+
+'"1;1;""Talents"";""C#"""
+"2;1;""Talents"";"".Net"""
+"3;1;""Unit"";""8200"""
+"4;1;""University_Name"";""Tecnion"""
+"5;1;""University_Name"";""Bar-Ilan"""
+"6;1;""University_Name"";""Ben-Gurion"""
+"7;1;""University_Grades"";""90+"""
+"8;1;""Gender"";""Man"""
+"9;1;""Gender"";""Woman"""
+"10;2;""Talents"";""C++"""
+"11;2;""University"";""Tecnion"""
+"12;2;""School_Name"";""Bar-Ilan"""
+"13;3;""Talents"";""Java"""
+"14;3;""University_Name"";""Tecnion"""
+"15;3;""Unit"";""8153"""
+"16;4;""Talents"";""Pyton"""
+"17;4;""Unit"";""8200"""
+"18;4;""Unit"";""8153"""
+"19;4;""Unit"";""9900"""
+"20;4;""University_Name"";""Tecnion"""
+"21;5;""Talents"";""DBA Oracle"""
+"22;5;""University_Name"";""Tecnion"""
+"23;5;""University_Grade"";""90+"""
+"24;6;""Talents"";""Baker"""
+"25;6;""Gender"";""Man"""
+"26;6;""Gender"";""Woman"""
+"27;7;""Talents"";""Rasar Worker"""
+"28;8;""Talents"";""HTML"""
+"29;8;""School_Grade"";""90+"""
+"30;8;""Talents"";""Web"""
+"31;9;""Talents"";""Web"""
+"32;9;""University_Name"";""Tecnion"""
+"33;9;""University_Name"";""Bar-Ilan"""
+"34;9;""University_Name"";""Ben-Gurion"""
+"35;9;""University_Name"";""Tel-Aviv"""
+"36;9;""University_Grade"";""80+"""
+"37;10;""Talents"";""8HACK"""'.gsub('"','').split("\n").each do |line|
+  params = line.split(';')
+  Jtag.create job_id: params[1], key: params[2], value: params[3]
+end

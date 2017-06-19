@@ -21,10 +21,10 @@ ActiveRecord::Schema.define(version: 20170619184047) do
   create_table "jtags", force: :cascade do |t|
     t.string   "key"
     t.string   "value"
-    t.integer  "soldier_id"
+    t.integer  "job_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["soldier_id"], name: "index_jtags_on_soldier_id"
+    t.index ["job_id"], name: "index_jtags_on_job_id"
   end
 
   create_table "soldiers", force: :cascade do |t|
