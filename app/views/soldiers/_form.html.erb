@@ -77,12 +77,12 @@
 
       function addTag(container, counter, tagname, title) {
           container.html(container.html() + 
-            "<div class='panel' >" +
+            "<div class='panel panel-default' >" +
               "<div class='panel-heading'><h3 class='panel-title'>New " + title +"</h3></div>" + 
               "<div class='panel-body'>" +
-              "<input name='tag_" + tagname +"_name_" + counter + "' placeholder='Name'/>" + 
-              "<input name='tag_" + tagname +"_profession_" + counter + "' placeholder='Profession'/>" + 
-              "<input name='tag_" + tagname +"_grade_" + counter + "' placeholder='Grade'/>" + 
+              "<input name='" + tagname +"_name_" + counter + "' placeholder='Name'/>" + 
+              "<input name='" + tagname +"_profession_" + counter + "' placeholder='Profession'/>" + 
+              "<input name='" + tagname +"_grade_" + counter + "' placeholder='Grade'/>" + 
               "</div>" +
             "</div>");
       }

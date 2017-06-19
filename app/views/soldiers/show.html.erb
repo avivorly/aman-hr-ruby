@@ -10,11 +10,43 @@
   <%= @soldier.idd %>
 </p>
 
-tags:
-<% @soldier.stags.each do |tag| %>
-<%= tag.key %>
-    <%= tag.value %>
+<div id="info"></div>
+<script>
+	var tags = {<% @soldier.stags.each do |tag| %>
+					{"<%= tag.key %>":"<%= tag.value %>"},
+				<% end %>};
+	var data = {};
+	for (var tag in tags){
+		if (tag.indexOf('_')){
+			var splitted = tag.split('_');
+	  		var group = splitted[0];
+	  		var fieldName = splitted[1];
+	  		var objectNumber = splitted[2];
+	  		var value = tags[tag];
+	  		if (!data[group]) {
+	  			data[group] = [];
+	  		}
+	  		data[group][objectNumber][fieldName] = value;
+		} else {
+			// fill other fields
+		}
+	}
+	
+	var container = $('#info');
+	var html = "";
+	for (var group in data){
+		if (group == 'university' || group == 'service' || group == 'profession' || group == 'school'){
+			group.forEach(function(tag){
+				html += "<div class='panel panel-default'>" +
+							tag.name + " " + tag.profession + " " + tag.grade +
+						"</div>";
+			});
+		}
+	}
+	container.html(html)
 
-    <% end %>
+
+</script>
+
 <%= link_to 'Edit', edit_soldier_path(@soldier) %> |
 <%= link_to 'Back', soldiers_path %>
