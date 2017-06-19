@@ -1,8 +1,7 @@
 <%= form_for(soldier) do |f| %>
   <% if soldier.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(soldier.errors.count, "error") %> prohibited this soldier from being saved:</h2>
-
+      <div class="alert alert-danger" ><%= pluralize(soldier.errors.count, "error") %> prohibited this soldier from being saved:</div>
       <ul>
       <% soldier.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -20,12 +19,11 @@
     <%= f.label :idd %>
     <%= f.text_area :idd %>
   </div>
-
-    <button type="button"  onclick="addUniversity()">Add university</button>
-    <button type="button"  onclick="addSchool()">Add profession</button>
-    <button type="button"  onclick="addProfession()">Add profession</button>
-    <button type="button"  onclick="addCourse()">Add courses</button>
-    <button type="button"  onclick="addService()">Add army service</button>
+    <button type="button" class="btn btn-lg" onclick="addUniversity()">Add university</button>
+    <button type="button" class="btn btn-lg" onclick="addSchool()">Add profession</button>
+    <button type="button" class="btn btn-lg" onclick="addProfession()">Add profession</button>
+    <button type="button" class="btn btn-lg" onclick="addCourse()">Add courses</button>
+    <button type="button" class="btn btn-lg" onclick="addService()">Add army service</button>
     <script>
       var universitiesCount = 0;
       function addUniversity(){
@@ -46,7 +44,7 @@
         schoolsCount ++;   
       }
 
-      var professionCount = 0;
+      var professionsCount = 0;
       function addProfession() {
         var container = $('#professions');
         var counter = professionsCount;
@@ -57,7 +55,7 @@
       }
 
 
-      var courseCount = 0;
+      var coursesCount = 0;
       function addCourse() {
         var container = $('#courses');
         var counter = coursesCount;
@@ -68,7 +66,7 @@
       }
 
       var servicesCount = 0;
-      function addServices() {
+      function addService() {
         var container = $('#services');
         var counter = servicesCount;
         var tagname = 'service';
@@ -79,11 +77,13 @@
 
       function addTag(container, counter, tagname, title) {
           container.html(container.html() + 
-            "<div>" +
-              "<h3>New " + title +"</h3>" + 
+            "<div class='panel' >" +
+              "<div class='panel-heading'><h3 class='panel-title'>New " + title +"</h3></div>" + 
+              "<div class='panel-body'>" +
               "<input name='tag_" + tagname +"_name_" + counter + "' placeholder='Name'/>" + 
-              "<input name='tag_" + tagname +"university_profession_" + counter + "' placeholder='Profession'/>" + 
+              "<input name='tag_" + tagname +"_profession_" + counter + "' placeholder='Profession'/>" + 
               "<input name='tag_" + tagname +"_grade_" + counter + "' placeholder='Grade'/>" + 
+              "</div>" +
             "</div>");
       }
     </script>
