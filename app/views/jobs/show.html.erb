@@ -1,9 +1,133 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @job.name %>
-</p>
+<style>
+  img {
+    border-radius: 50%;
+  }
+  .profile {
+    text-align: center;
+    width: 250px;
+    margin: auto;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.4);
+    padding: 20px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+  .profile img {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 80px;
+    height: 80px;
+  }
+  .profile .name {
+    margin-bottom: 10px;
+  }
+    #requirements-list > * {
+      width: 250px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .matching {
+      margin-top: 60px;
+      box-shadow: 0px 1px 2px rgba(0,0,0,.4);
+    }
+    .matching .head {
+      padding: 20px 30px;
+      border-bottom: 1px solid #eee;
+    }
+    .matching .soldier {
+      padding: 20px 25px;
+      border-bottom: 1px solid #eee;
+    }
+    .matching .soldier img {
+      width: 30px;
+      margin-right: 15px;
+    }
+    .requirements {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+</style>
+<div>
+  <div class="col-md-4">
+    <div class="profile">
+      <img src="https://upload.wikimedia.org/wikipedia/he/thumb/6/68/AmanLogo.svg/1024px-AmanLogo.svg.png" /><br>
+      <div class="name"><strong><%= @job.name %></strong></div><br>
+      <!--<strong class="position">Current position</strong>-->
+      <div id="tags"></div>
+    </div>
+    <div class="requirements"><strong>Requirements</strong></div>
+    <div id="requirements-list"></div>
+  </div>
+  <script>
+    var tags = {
+        <% @job.jtags.each do |tag| %>
+        "<%= tag.key %>":"<%= tag.value %>",
+        <% end %>
+    };
+
+
+
+
+    var data = {};
+    var totalTags = [];
+    for (var tag in tags){
+        if (tag.indexOf('_')>0){
+            var splitted = tag.split('_');
+            var group = splitted[0];
+            var fieldName = splitted[1];
+            var objectNumber = splitted[2];
+            var value = tags[tag];
+            if (!data[group]) {
+                data[group] = [];
+            }
+            if (!data[group][objectNumber]) {
+                data[group][objectNumber] = {};
+            }
+            data[group][objectNumber][fieldName] = value;
+        } else {
+            totalTags.push(tags[tag])
+        }
+    }
+
+    var container = $('#requirements-list');
+    var html = "";
+    for (var group in data){
+        if (group == 'university' || group == 'service' || group == 'profession' || group == 'school'){
+            data[group].forEach(function(tag){
+                html +=
+                    "<div class='panel panel-default'>" +
+                    "<div class='panel-heading'><h3 class='panel-title'>" + group +"</h3></div>" +
+                    "<div class='panel-body'>" +
+                    tag.name + " " + tag.profession + " " + tag.grade +
+                    "</div>" +
+                    "</div>";
+            });
+        }
+    }
+    container.html(html)
+
+    $('#tags').html(totalTags.join(", "));
+
+</script>
+  <div class="col-md-4">
+    <div class="matching">
+      <div class="head">Matching</div>
+      <% @job.match_sol.each do |a,b,data| %>
+          <a href="/soldiers/<%= data['id'] %>">
+            <div class="soldier">
+              <img src="http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg">
+              <%= data['name'] %> - <%= (a.to_f / b * 100).to_i  %>%
+            </div>
+          </a>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 <%= link_to 'Edit', edit_job_path(@job) %> |
 <%= link_to 'Back', jobs_path %>

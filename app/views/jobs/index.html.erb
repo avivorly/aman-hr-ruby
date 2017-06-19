@@ -1,26 +1,50 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Jobs</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<div class="jobs">
 
-  <tbody>
+  <h1>Positions</h1>
+  <style>
+    .jobs {
+      width: 600px;
+      margin-left:auto;
+      margin-right: auto;
+      box-shadow: 0px 1px 2px rgba(0,0,0,.4);
+    }
+    .jobs h1 {
+      padding-top: 20px;
+      padding-left: 30px;
+    }
+      .jobs .item {
+        border-bottom: 1px solid #eee;
+        padding: 10px;
+      }
+      .jobs .item img {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+      }
+      .jobs .item .actions {
+        float: right;
+        margin-top: 8px;
+      }
+  </style>
+  <div >
     <% @jobs.each do |job| %>
-      <tr>
-        <td><%= job.name %></td>
-        <td><%= link_to 'Show', job %></td>
-        <td><%= link_to 'Edit', edit_job_path(job) %></td>
-        <td><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <div class="item">
+
+        <img src="https://upload.wikimedia.org/wikipedia/he/thumb/6/68/AmanLogo.svg/1024px-AmanLogo.svg.png" />
+        <span><%= job.name %></span>
+        <div class="actions">
+          <span><%= link_to 'Show', job %></span>
+          <span><%= link_to 'Edit', edit_job_path(job) %></span>
+          <span><%= link_to 'Destroy', job, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+        </div>
+
+      </div>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>
 
 <br>
 

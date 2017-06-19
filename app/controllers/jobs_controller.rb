@@ -25,11 +25,19 @@ class JobsController < ApplicationController
   # POST /jobs.json
   def create
     @job = Job.new(job_params)
-
+    tags = params.except(*%w[utf8 authenticity_token job commit controller action])
     respond_to do |format|
       if @job.save
         format.html { redirect_to @job, notice: 'Job was successfully created.' }
         format.json { render :show, status: :created, location: @job }
+
+        tags.each_pair do |key, value|
+
+          p '='*100
+          p "key=>#{key}, value=>#{value}"
+          p '='*100
+          Jtag.create key: key, value: value, job_id: @job.id
+        end
       else
         format.html { render :new }
         format.json { render json: @job.errors, status: :unprocessable_entity }

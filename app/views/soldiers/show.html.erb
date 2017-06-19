@@ -13,11 +13,11 @@
 <div id="info"></div>
 <script>
 	var tags = {<% @soldier.stags.each do |tag| %>
-					{"<%= tag.key %>":"<%= tag.value %>"},
+					"<%= tag.key %>":"<%= tag.value %>",
 				<% end %>};
 	var data = {};
 	for (var tag in tags){
-		if (tag.indexOf('_')){
+		if (tag.indexOf('_')>0){
 			var splitted = tag.split('_');
 	  		var group = splitted[0];
 	  		var fieldName = splitted[1];
@@ -26,19 +26,26 @@
 	  		if (!data[group]) {
 	  			data[group] = [];
 	  		}
+	  		if (!data[group][objectNumber]) {
+            data[group][objectNumber] = {};
+        }
 	  		data[group][objectNumber][fieldName] = value;
 		} else {
 			// fill other fields
 		}
 	}
-	
+
 	var container = $('#info');
 	var html = "";
 	for (var group in data){
 		if (group == 'university' || group == 'service' || group == 'profession' || group == 'school'){
-			group.forEach(function(tag){
-				html += "<div class='panel panel-default'>" +
-							tag.name + " " + tag.profession + " " + tag.grade +
+			data[group].forEach(function(tag){
+				html +=
+            "<div class='panel panel-default'>" +
+              "<div class='panel-heading'><h3 class='panel-title'>" + group +"</h3></div>" +
+              "<div class='panel-body'>" +
+                tag.name + " " + tag.profession + " " + tag.grade +
+              "</div>" +
 						"</div>";
 			});
 		}
@@ -47,6 +54,7 @@
 
 
 </script>
+
 
 <%= link_to 'Edit', edit_soldier_path(@soldier) %> |
 <%= link_to 'Back', soldiers_path %>
