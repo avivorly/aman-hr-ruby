@@ -1,0 +1,2 @@
+class Stag < ApplicationRecord
+end

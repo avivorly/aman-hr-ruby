@@ -1,0 +1,38 @@
+<%= form_for(soldier) do |f| %>
+  <% if soldier.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(soldier.errors.count, "error") %> prohibited this soldier from being saved:</h2>
+
+      <ul>
+      <% soldier.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_area :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :idd %>
+    <%= f.text_area :idd %>
+  </div>
+
+    <button type="button" onclick="addUniversity()">Add university</button>
+  <script>
+    function addUniversity() {
+        var uns = $('#universities');
+        uns.html(uns.html() + '<div><h3>New university</h3><input placeholder="Name"  /><input placeholder="Profession"  /></div>')
+    }
+  </script>
+
+    <div id="universities">
+
+    </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
