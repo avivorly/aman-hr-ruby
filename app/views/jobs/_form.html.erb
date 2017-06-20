@@ -1,5 +1,17 @@
-
-<div class="jumbotron">
+<style>
+.add-job {
+  width: 500px;
+  margin: auto;
+  margin-top: 80px;
+  box-shadow: 0px 1px 2px rgba(0,0,0,.4);
+  padding: 30px;
+}
+    .actions button{
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+</style>
+<div class="add-job">
   <%= form_for(job) do |f| %>
 
 
@@ -18,14 +30,16 @@
       </div>
   <% end %>
   <div class="field">
-    <%= f.label :name %>
-    <%= f.text_area :name %>
+    <label>Title</label><br>
+    <input placeholder="Job title" name="job[name]" value="<%= @job.name %>">
   </div>
-    <button type="button" class="btn " onclick="addUniversity()">Add university</button>
-    <button type="button" class="btn" onclick="addSchool()">Add school</button>
-    <button type="button" class="btn" onclick="addProfession()">Add profession</button>
-    <button type="button" class="btn" onclick="addCourse()">Add courses</button>
-    <button type="button" class="btn" onclick="addService()">Add army service</button>
+      <div class="actions">
+        <button type="button" class="btn " onclick="addUniversity()">Add university</button>
+        <button type="button" class="btn" onclick="addSchool()">Add school</button>
+        <button type="button" class="btn" onclick="addProfession()">Add profession</button>
+        <button type="button" class="btn" onclick="addCourse()">Add courses</button>
+        <button type="button" class="btn" onclick="addService()">Add army service</button>
+      </div>
     <script>
         var universitiesCount = 0;
         function addUniversity(){
@@ -82,14 +96,14 @@
                 "<div class='panel panel-default' >" +
                 "<div class='panel-heading'><h3 class='panel-title'>New " + title +"</h3></div>" +
                 "<div class='panel-body'>" +
-                "<input name='" + tagname +"_name_" + counter + "' placeholder='Name'/>" +
-                "<input name='" + tagname +"_profession_" + counter + "' placeholder='Profession'/>" +
-                "<input name='" + tagname +"_grade_" + counter + "' placeholder='Grade'/>" +
+                "<input name='" + tagname +"_name_" + counter + "' placeholder='Name'/><br>" +
+                "<input name='" + tagname +"_profession_" + counter + "' placeholder='Profession'/><br>" +
+                "<input name='" + tagname +"_grade_" + counter + "' placeholder='Grade'/><br>" +
                 "</div>" +
-                "</div>");
+                "</div><br>");
         }
     </script>
-    <div id="schools">
+    <div id="schools"  >
     </div>
     <div id="universities">
     </div>
