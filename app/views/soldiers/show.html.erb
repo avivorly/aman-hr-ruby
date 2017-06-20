@@ -1,16 +1,67 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @soldier.name %>
-</p>
+<style>
+  img {
+    border-radius: 50%;
+  }
+  .profile {
+    text-align: center;
+    width: 250px;
+    margin: auto;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.4);
+    padding: 20px;
+    margin-top: 60px;
+    margin-bottom: 40px;
+  }
+  .profile img {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    width: 80px;
+    height: 80px;
+  }
+  .profile .name {
+    margin-bottom: 10px;
+  }
+  #requirements-list > * {
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .matching {
+    margin-top: 60px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.4);
+  }
+  .matching .head {
+    padding: 20px 30px;
+    border-bottom: 1px solid #eee;
+  }
+  .matching .soldier {
+    padding: 20px 25px;
+    border-bottom: 1px solid #eee;
+  }
+  .matching .soldier img {
+    width: 30px;
+    margin-right: 15px;
+  }
+  .vc {
+    margin-bottom: 10px;
+    margin-top: 80px;
+  }
+</style>
 
-<p>
-  <strong>Idd:</strong>
-  <%= @soldier.idd %>
-</p>
+<div class="col-md-4">
+  <div class="profile">
+    <img src="http://eadb.org/wp-content/uploads/2015/08/profile-placeholder.jpg" /><br>
+    <div class="name"><strong><%= @soldier.name %></strong></div><br><%= @soldier.idd %>
+    <!--<strong class="position">Current position</strong>-->
+    <div id="tags"></div>
+  </div>
+</div>
 
-<div id="info"></div>
+<div class="col-md-4">
+  <div class="vc"><h1>VC</h1></div>
+  <div id="vc-list"></div>
+</div>
 <script>
 	var tags = {<% @soldier.stags.each do |tag| %>
 					"<%= tag.key %>":"<%= tag.value %>",
@@ -35,10 +86,10 @@
 		}
 	}
 
-	var container = $('#info');
+	var container = $('#vc-list');
 	var html = "";
 	for (var group in data){
-		if (group == 'university' || group == 'service' || group == 'profession' || group == 'school'){
+		if (group == 'university' || group == 'service' || group == 'profession' || group == 'school'|| group == 'course'){
 			data[group].forEach(function(tag){
 				html +=
             "<div class='panel panel-default'>" +

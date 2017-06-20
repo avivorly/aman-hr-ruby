@@ -93,7 +93,7 @@
     var container = $('#requirements-list');
     var html = "";
     for (var group in data){
-        if (group == 'university' || group == 'service' || group == 'profession' || group == 'school'){
+        if (group == 'university' || group == 'service' || group == 'profession' || group == 'school' || group == 'course'){
             data[group].forEach(function(tag){
                 html +=
                     "<div class='panel panel-default'>" +

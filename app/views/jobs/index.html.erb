@@ -28,6 +28,9 @@
         float: right;
         margin-top: 8px;
       }
+    .jobs .add {
+      padding: 15px 50px;
+    }
   </style>
   <div >
     <% @jobs.each do |job| %>
@@ -43,9 +46,13 @@
 
       </div>
     <% end %>
+
+    <div class="add">
+    <%= link_to 'New Job', new_job_path %>
+    </div>
   </div>
 </div>
 
 <br>
 
-<%= link_to 'New Job', new_job_path %>
+

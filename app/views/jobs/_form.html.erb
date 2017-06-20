@@ -1,28 +1,31 @@
-<%= form_for(job) do |f| %>
+
+<div class="jumbotron">
+  <%= form_for(job) do |f| %>
+
+
+
+
+
   <% if job.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
+      <div id="error_explanation">
+        <h2><%= pluralize(job.errors.count, "error") %> prohibited this job from being saved:</h2>
 
-      <ul>
-      <% job.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+        <ul>
+          <% job.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
   <% end %>
-
   <div class="field">
     <%= f.label :name %>
     <%= f.text_area :name %>
   </div>
-
-
-
-    <button type="button" class="btn btn-lg" onclick="addUniversity()">Add university</button>
-    <button type="button" class="btn btn-lg" onclick="addSchool()">Add profession</button>
-    <button type="button" class="btn btn-lg" onclick="addProfession()">Add profession</button>
-    <button type="button" class="btn btn-lg" onclick="addCourse()">Add courses</button>
-    <button type="button" class="btn btn-lg" onclick="addService()">Add army service</button>
+    <button type="button" class="btn " onclick="addUniversity()">Add university</button>
+    <button type="button" class="btn" onclick="addSchool()">Add school</button>
+    <button type="button" class="btn" onclick="addProfession()">Add profession</button>
+    <button type="button" class="btn" onclick="addCourse()">Add courses</button>
+    <button type="button" class="btn" onclick="addService()">Add army service</button>
     <script>
         var universitiesCount = 0;
         function addUniversity(){
@@ -93,8 +96,8 @@
     <div id="courses"></div>
     <div id="professions"></div>
     <div id="services"></div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <br>
+    <button class="btn" >Create</button>
+</div>
 <% end %>
+</div>
